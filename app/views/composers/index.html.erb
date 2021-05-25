@@ -8,6 +8,7 @@
 
 <hr>
 
+<% if @current_user != nil %>
 <div>
   <div>
     <h2>
@@ -31,6 +32,7 @@
         <input type="text" id="era_box" name="query_era">
       </div>
 
+      <!--
       <div>
         <label for="pieces_count_box">
           Pieces count
@@ -38,6 +40,7 @@
 
         <input type="text" id="pieces_count_box" name="query_pieces_count">
       </div>
+      -->
 
       <button>
         Create composer
@@ -45,15 +48,18 @@
     </form>
   </div>
 </div>
+<% end %>
 
 <hr>
 <div>
   <div>
     <table>
       <tr>
+        <!--
         <th>
           ID
         </th>
+        -->
 
         <th>
           Name
@@ -67,6 +73,7 @@
           Pieces count
         </th>
 
+        <!--
         <th>
           Created at
         </th>
@@ -74,6 +81,7 @@
         <th>
           Updated at
         </th>
+        -->
 
         <th>
         </th>
@@ -81,9 +89,11 @@
 
       <% @list_of_composers.each do |a_composer| %>
       <tr>
+        <!--
         <td>
           <%= a_composer.id %>
         </td>
+        -->
 
         <td>
           <%= a_composer.name %>
@@ -97,12 +107,14 @@
           <%= a_composer.pieces_count %>
         </td>
 
+        <!--
         <td>
           <%= time_ago_in_words(a_composer.created_at) %> ago
         </td>
         <td>
           <%= time_ago_in_words(a_composer.updated_at) %> ago
         </td>
+        -->
 
         <td>
           <a href="/composers/<%= a_composer.id %>">

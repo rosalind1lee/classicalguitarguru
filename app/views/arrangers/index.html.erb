@@ -8,6 +8,7 @@
 
 <hr>
 
+<% if @current_user != nil %>
 <div>
   <div>
     <h2>
@@ -23,6 +24,7 @@
         <input type="text" id="name_box" name="query_name">
       </div>
 
+      <!--
       <div>
         <label for="pieces_count_box">
           Pieces count
@@ -30,6 +32,7 @@
 
         <input type="text" id="pieces_count_box" name="query_pieces_count">
       </div>
+      -->
 
       <button>
         Create arranger
@@ -37,15 +40,18 @@
     </form>
   </div>
 </div>
+<% end %>
 
 <hr>
 <div>
   <div>
     <table>
       <tr>
+        <!--
         <th>
           ID
         </th>
+        -->
 
         <th>
           Name
@@ -55,6 +61,7 @@
           Pieces count
         </th>
 
+        <!--
         <th>
           Created at
         </th>
@@ -62,6 +69,7 @@
         <th>
           Updated at
         </th>
+        -->
 
         <th>
         </th>
@@ -69,9 +77,11 @@
 
       <% @list_of_arrangers.each do |an_arranger| %>
       <tr>
+        <!--
         <td>
           <%= an_arranger.id %>
         </td>
+        -->
 
         <td>
           <%= an_arranger.name %>
@@ -81,12 +91,14 @@
           <%= an_arranger.pieces_count %>
         </td>
 
+        <!--
         <td>
           <%= time_ago_in_words(an_arranger.created_at) %> ago
         </td>
         <td>
           <%= time_ago_in_words(an_arranger.updated_at) %> ago
         </td>
+        -->
 
         <td>
           <a href="/arrangers/<%= an_arranger.id %>">
