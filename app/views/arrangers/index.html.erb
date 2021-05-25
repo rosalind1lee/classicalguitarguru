@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all arrangers
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new arranger
+    </h2>
+
+    <form action="/insert_arranger" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="pieces_count_box">
+          Pieces count
+        </label>
+
+        <input type="text" id="pieces_count_box" name="query_pieces_count">
+      </div>
+
+      <button>
+        Create arranger
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Pieces count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_arrangers.each do |an_arranger| %>
+      <tr>
+        <td>
+          <%= an_arranger.id %>
+        </td>
+
+        <td>
+          <%= an_arranger.name %>
+        </td>
+
+        <td>
+          <%= an_arranger.pieces_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_arranger.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_arranger.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/arrangers/<%= an_arranger.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

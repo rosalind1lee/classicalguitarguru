@@ -1,0 +1,2 @@
+class Arranger < ApplicationRecord
+end

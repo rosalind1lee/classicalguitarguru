@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Arranger #<%= @the_arranger.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/arrangers">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_arranger/<%= @the_arranger.id %>">
+          Delete arranger
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_arranger.name %>
+      </dd>
+
+      <dt>
+        Pieces count
+      </dt>
+      <dd>
+        <%= @the_arranger.pieces_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_arranger.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_arranger.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit arranger
+    </h2>
+
+    <form action="/modify_arranger/<%= @the_arranger.id %>"  method="post" >
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_arranger.name %>">
+      </div>
+
+      <div>
+        <label for="pieces_count_box">
+          Pieces count
+        </label>
+
+        <input type="text" id="pieces_count_box" name="query_pieces_count" value="<%= @the_arranger.pieces_count %>">
+      </div>
+
+      <button>
+        Update arranger
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

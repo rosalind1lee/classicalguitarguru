@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Arranger resource:
+
+  # CREATE
+  post("/insert_arranger", { :controller => "arrangers", :action => "create" })
+          
+  # READ
+  get("/arrangers", { :controller => "arrangers", :action => "index" })
+  
+  get("/arrangers/:path_id", { :controller => "arrangers", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_arranger/:path_id", { :controller => "arrangers", :action => "update" })
+  
+  # DELETE
+  get("/delete_arranger/:path_id", { :controller => "arrangers", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Piece resource:
 
   # CREATE
