@@ -79,9 +79,11 @@
   <div>
     <table>
       <tr>
+        <!--
         <th>
           ID
         </th>
+        -->
 
         <th>
           Title
@@ -107,6 +109,7 @@
           Comments count
         </th>
 
+        <!--
         <th>
           Created at
         </th>
@@ -114,6 +117,7 @@
         <th>
           Updated at
         </th>
+        -->
 
         <th>
         </th>
@@ -121,20 +125,22 @@
 
       <% @list_of_pieces.each do |a_piece| %>
       <tr>
+        <!--
         <td>
           <%= a_piece.id %>
         </td>
+        -->
 
         <td>
           <%= a_piece.title %>
         </td>
 
         <td>
-          <%= a_piece.composer_id %>
+          <%= a_piece.composer_id.name %>
         </td>
 
         <td>
-          <%= a_piece.arranger_id %>
+          <%= a_piece.arranger_id.name %>
         </td>
 
         <td>
@@ -149,12 +155,14 @@
           <%= a_piece.comments_count %>
         </td>
 
+        <!--
         <td>
           <%= time_ago_in_words(a_piece.created_at) %> ago
         </td>
         <td>
           <%= time_ago_in_words(a_piece.updated_at) %> ago
         </td>
+        -->
 
         <td>
           <a href="/pieces/<%= a_piece.id %>">
