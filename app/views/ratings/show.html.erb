@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Rating #<%= @the_rating.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/ratings">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_rating/<%= @the_rating.id %>">
+          Delete rating
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_rating.user_id %>
+      </dd>
+
+      <dt>
+        Score
+      </dt>
+      <dd>
+        <%= @the_rating.score %>
+      </dd>
+
+      <dt>
+        Piece
+      </dt>
+      <dd>
+        <%= @the_rating.piece_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_rating.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_rating.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit rating
+    </h2>
+
+    <form action="/modify_rating/<%= @the_rating.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_rating.user_id %>">
+      </div>
+
+      <div>
+        <label for="score_box">
+          Score
+        </label>
+
+        <input type="text" id="score_box" name="query_score" value="<%= @the_rating.score %>">
+      </div>
+
+      <div>
+        <label for="piece_id_box">
+          Piece
+        </label>
+
+        <input type="text" id="piece_id_box" name="query_piece_id" value="<%= @the_rating.piece_id %>">
+      </div>
+
+      <button>
+        Update rating
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

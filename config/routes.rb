@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Rating resource:
+
+  # CREATE
+  post("/insert_rating", { :controller => "ratings", :action => "create" })
+          
+  # READ
+  get("/ratings", { :controller => "ratings", :action => "index" })
+  
+  get("/ratings/:path_id", { :controller => "ratings", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_rating/:path_id", { :controller => "ratings", :action => "update" })
+  
+  # DELETE
+  get("/delete_rating/:path_id", { :controller => "ratings", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Arranger resource:
 
   # CREATE
