@@ -22,9 +22,9 @@ class PiecesController < ApplicationController
     the_piece.title = params.fetch("query_title")
     the_piece.composer_id = params.fetch("query_composer_id")
     the_piece.arranger_id = params.fetch("query_arranger_id")
-    the_piece.ratings_count = params.fetch("query_ratings_count")
-    the_piece.favorites_count = params.fetch("query_favorites_count")
-    the_piece.comments_count = params.fetch("query_comments_count")
+    #the_piece.ratings_count = params.fetch("query_ratings_count")
+    #the_piece.favorites_count = params.fetch("query_favorites_count")
+    #the_piece.comments_count = params.fetch("query_comments_count")
 
     if the_piece.valid?
       the_piece.save
@@ -41,9 +41,9 @@ class PiecesController < ApplicationController
     the_piece.title = params.fetch("query_title")
     the_piece.composer_id = params.fetch("query_composer_id")
     the_piece.arranger_id = params.fetch("query_arranger_id")
-    the_piece.ratings_count = params.fetch("query_ratings_count")
-    the_piece.favorites_count = params.fetch("query_favorites_count")
-    the_piece.comments_count = params.fetch("query_comments_count")
+    #the_piece.ratings_count = params.fetch("query_ratings_count")
+    #the_piece.favorites_count = params.fetch("query_favorites_count")
+    #the_piece.comments_count = params.fetch("query_comments_count")
 
     if the_piece.valid?
       the_piece.save

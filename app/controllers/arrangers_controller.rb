@@ -20,7 +20,7 @@ class ArrangersController < ApplicationController
   def create
     the_arranger = Arranger.new
     the_arranger.name = params.fetch("query_name")
-    the_arranger.pieces_count = params.fetch("query_pieces_count")
+    #the_arranger.pieces_count = params.fetch("query_pieces_count")
 
     if the_arranger.valid?
       the_arranger.save
@@ -35,7 +35,7 @@ class ArrangersController < ApplicationController
     the_arranger = Arranger.where({ :id => the_id }).at(0)
 
     the_arranger.name = params.fetch("query_name")
-    the_arranger.pieces_count = params.fetch("query_pieces_count")
+    #the_arranger.pieces_count = params.fetch("query_pieces_count")
 
     if the_arranger.valid?
       the_arranger.save

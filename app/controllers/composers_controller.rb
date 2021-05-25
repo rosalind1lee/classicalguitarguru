@@ -21,7 +21,7 @@ class ComposersController < ApplicationController
     the_composer = Composer.new
     the_composer.name = params.fetch("query_name")
     the_composer.era = params.fetch("query_era")
-    the_composer.pieces_count = params.fetch("query_pieces_count")
+    #the_composer.pieces_count = params.fetch("query_pieces_count")
 
     if the_composer.valid?
       the_composer.save
@@ -37,7 +37,7 @@ class ComposersController < ApplicationController
 
     the_composer.name = params.fetch("query_name")
     the_composer.era = params.fetch("query_era")
-    the_composer.pieces_count = params.fetch("query_pieces_count")
+    #the_composer.pieces_count = params.fetch("query_pieces_count")
 
     if the_composer.valid?
       the_composer.save
