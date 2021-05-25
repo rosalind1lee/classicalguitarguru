@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Piece #<%= @the_piece.title %> details
+      <%= @the_piece.title %> details
     </h1>
 
     <div>
@@ -32,14 +32,18 @@
         Composer
       </dt>
       <dd>
-        <%= @the_piece.composer %>
+        <% if @the_piece.composer != nil %>
+          <%= @the_piece.composer.name %>
+        <% end %>
       </dd>
 
       <dt>
         Arranger
       </dt>
       <dd>
-        <%= @the_piece.arranger %>
+        <% if @the_piece.arranger != nil %>
+          <%= @the_piece.arranger.name %>
+        <% end %>
       </dd>
 
       <dt>
@@ -106,7 +110,14 @@
           Composer
         </label>
 
-        <input type="text" id="composer_id_box" name="query_composer_id" value="<%= @the_piece.composer_id %>">
+        <select name="query_composer_id" id="composer_id_box">
+          <% @list_of_composers.each do |a_composer| %>
+            <option value="<%=a_composer.id%>">
+              <%=a_composer.name%>
+            </option>
+          <% end %>
+        </select>
+
       </div>
 
       <div>
@@ -114,7 +125,14 @@
           Arranger
         </label>
 
-        <input type="text" id="arranger_id_box" name="query_arranger_id" value="<%= @the_piece.arranger_id %>">
+        <select name="query_arranger_id" id="arranger_id_box">
+          <% @list_of_arrangers.each do |a_arranger| %>
+            <option value="<%=a_arranger.id%>">
+              <%=a_arranger.name%>
+            </option>
+          <% end %>
+        </select>
+
       </div>
 
       <!--

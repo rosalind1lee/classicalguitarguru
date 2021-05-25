@@ -18,6 +18,9 @@ class PiecesController < ApplicationController
 
     @the_piece = matching_pieces.at(0)
 
+    @list_of_composers = Composer.all
+    @list_of_arrangers = Arranger.all
+
     render({ :template => "pieces/show.html.erb" })
   end
 
