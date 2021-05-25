@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Piece resource:
+
+  # CREATE
+  post("/insert_piece", { :controller => "pieces", :action => "create" })
+          
+  # READ
+  get("/pieces", { :controller => "pieces", :action => "index" })
+  
+  get("/pieces/:path_id", { :controller => "pieces", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_piece/:path_id", { :controller => "pieces", :action => "update" })
+  
+  # DELETE
+  get("/delete_piece/:path_id", { :controller => "pieces", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Composer resource:
 
   # CREATE

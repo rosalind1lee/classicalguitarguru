@@ -1,0 +1,166 @@
+<div>
+  <div>
+    <h1>
+      List of all pieces
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new piece
+    </h2>
+
+    <form action="/insert_piece" method="post">
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title">
+      </div>
+
+      <div>
+        <label for="composer_id_box">
+          Composer
+        </label>
+
+        <input type="text" id="composer_id_box" name="query_composer_id">
+      </div>
+
+      <div>
+        <label for="arranger_id_box">
+          Arranger
+        </label>
+
+        <input type="text" id="arranger_id_box" name="query_arranger_id">
+      </div>
+
+      <div>
+        <label for="ratings_count_box">
+          Ratings count
+        </label>
+
+        <input type="text" id="ratings_count_box" name="query_ratings_count">
+      </div>
+
+      <div>
+        <label for="favorites_count_box">
+          Favorites count
+        </label>
+
+        <input type="text" id="favorites_count_box" name="query_favorites_count">
+      </div>
+
+      <div>
+        <label for="comments_count_box">
+          Comments count
+        </label>
+
+        <input type="text" id="comments_count_box" name="query_comments_count">
+      </div>
+
+      <button>
+        Create piece
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Title
+        </th>
+
+        <th>
+          Composer
+        </th>
+
+        <th>
+          Arranger
+        </th>
+
+        <th>
+          Ratings count
+        </th>
+
+        <th>
+          Favorites count
+        </th>
+
+        <th>
+          Comments count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_pieces.each do |a_piece| %>
+      <tr>
+        <td>
+          <%= a_piece.id %>
+        </td>
+
+        <td>
+          <%= a_piece.title %>
+        </td>
+
+        <td>
+          <%= a_piece.composer_id %>
+        </td>
+
+        <td>
+          <%= a_piece.arranger_id %>
+        </td>
+
+        <td>
+          <%= a_piece.ratings_count %>
+        </td>
+
+        <td>
+          <%= a_piece.favorites_count %>
+        </td>
+
+        <td>
+          <%= a_piece.comments_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_piece.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_piece.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/pieces/<%= a_piece.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

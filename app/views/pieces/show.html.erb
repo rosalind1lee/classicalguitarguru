@@ -1,0 +1,146 @@
+<div>
+  <div>
+    <h1>
+      Piece #<%= @the_piece.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/pieces">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_piece/<%= @the_piece.id %>">
+          Delete piece
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @the_piece.title %>
+      </dd>
+
+      <dt>
+        Composer
+      </dt>
+      <dd>
+        <%= @the_piece.composer_id %>
+      </dd>
+
+      <dt>
+        Arranger
+      </dt>
+      <dd>
+        <%= @the_piece.arranger_id %>
+      </dd>
+
+      <dt>
+        Ratings count
+      </dt>
+      <dd>
+        <%= @the_piece.ratings_count %>
+      </dd>
+
+      <dt>
+        Favorites count
+      </dt>
+      <dd>
+        <%= @the_piece.favorites_count %>
+      </dd>
+
+      <dt>
+        Comments count
+      </dt>
+      <dd>
+        <%= @the_piece.comments_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_piece.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_piece.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit piece
+    </h2>
+
+    <form action="/modify_piece/<%= @the_piece.id %>"  method="post" >
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_piece.title %>">
+      </div>
+
+      <div>
+        <label for="composer_id_box">
+          Composer
+        </label>
+
+        <input type="text" id="composer_id_box" name="query_composer_id" value="<%= @the_piece.composer_id %>">
+      </div>
+
+      <div>
+        <label for="arranger_id_box">
+          Arranger
+        </label>
+
+        <input type="text" id="arranger_id_box" name="query_arranger_id" value="<%= @the_piece.arranger_id %>">
+      </div>
+
+      <div>
+        <label for="ratings_count_box">
+          Ratings count
+        </label>
+
+        <input type="text" id="ratings_count_box" name="query_ratings_count" value="<%= @the_piece.ratings_count %>">
+      </div>
+
+      <div>
+        <label for="favorites_count_box">
+          Favorites count
+        </label>
+
+        <input type="text" id="favorites_count_box" name="query_favorites_count" value="<%= @the_piece.favorites_count %>">
+      </div>
+
+      <div>
+        <label for="comments_count_box">
+          Comments count
+        </label>
+
+        <input type="text" id="comments_count_box" name="query_comments_count" value="<%= @the_piece.comments_count %>">
+      </div>
+
+      <button>
+        Update piece
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
