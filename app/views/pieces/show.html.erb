@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Piece #<%= @the_piece.id %> details
+      Piece #<%= @the_piece.title %> details
     </h1>
 
     <div>
@@ -11,11 +11,13 @@
         </a>
       </div>
 
+      <!--
       <div>
         <a href="/delete_piece/<%= @the_piece.id %>">
           Delete piece
         </a>
       </div>
+      -->
     </div>
 
     <dl>
@@ -30,14 +32,14 @@
         Composer
       </dt>
       <dd>
-        <%= @the_piece.composer_id %>
+        <%= @the_piece.composer_id.name %>
       </dd>
 
       <dt>
         Arranger
       </dt>
       <dd>
-        <%= @the_piece.arranger_id %>
+        <%= @the_piece.arranger_id.name %>
       </dd>
 
       <dt>
@@ -61,6 +63,7 @@
         <%= @the_piece.comments_count %>
       </dd>
 
+      <!--
       <dt>
         Created at
       </dt>
@@ -74,6 +77,8 @@
       <dd>
         <%= time_ago_in_words(@the_piece.updated_at) %> ago
       </dd>
+      -->
+
     </dl>
   </div>
 </div>
