@@ -4,6 +4,10 @@ class PiecesController < ApplicationController
 
     @list_of_pieces = matching_pieces.order({ :created_at => :desc })
 
+
+    @list_of_composers = Composer.all
+    @list_of_arrangers = Arranger.all
+
     render({ :template => "pieces/index.html.erb" })
   end
 
