@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Favorite resource:
+
+  # CREATE
+  post("/insert_favorite", { :controller => "favorites", :action => "create" })
+          
+  # READ
+  get("/favorites", { :controller => "favorites", :action => "index" })
+  
+  get("/favorites/:path_id", { :controller => "favorites", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_favorite/:path_id", { :controller => "favorites", :action => "update" })
+  
+  # DELETE
+  get("/delete_favorite/:path_id", { :controller => "favorites", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Rating resource:
 
   # CREATE
