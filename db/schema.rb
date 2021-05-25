@@ -10,6 +10,64 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_05_25_055255) do
+
+  create_table "arrangers", force: :cascade do |t|
+    t.string "name"
+    t.integer "pieces_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "piece_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "composers", force: :cascade do |t|
+    t.string "name"
+    t.string "era"
+    t.integer "pieces_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "piece_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pieces", force: :cascade do |t|
+    t.string "title"
+    t.integer "composer_id"
+    t.integer "arranger_id"
+    t.integer "ratings_count"
+    t.integer "favorites_count"
+    t.integer "comments_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "score"
+    t.integer "piece_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.integer "ratings_count"
+    t.integer "favorites_count"
+    t.integer "comments_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end
