@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-
+  get("/", { :controller => "pieces", :action => "index" })
   # Routes for the Comment resource:
 
   # CREATE
