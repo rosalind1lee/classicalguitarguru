@@ -32,14 +32,14 @@
         Composer
       </dt>
       <dd>
-        <%= @the_piece.composer_id.name %>
+        <%= @the_piece.composer %>
       </dd>
 
       <dt>
         Arranger
       </dt>
       <dd>
-        <%= @the_piece.arranger_id.name %>
+        <%= @the_piece.arranger %>
       </dd>
 
       <dt>
@@ -117,6 +117,7 @@
         <input type="text" id="arranger_id_box" name="query_arranger_id" value="<%= @the_piece.arranger_id %>">
       </div>
 
+      <!--
       <div>
         <label for="ratings_count_box">
           Ratings count
@@ -140,6 +141,7 @@
 
         <input type="text" id="comments_count_box" name="query_comments_count" value="<%= @the_piece.comments_count %>">
       </div>
+      -->
 
       <button>
         Update piece
