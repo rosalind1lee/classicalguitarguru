@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all composers
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new composer
+    </h2>
+
+    <form action="/insert_composer" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="era_box">
+          Era
+        </label>
+
+        <input type="text" id="era_box" name="query_era">
+      </div>
+
+      <div>
+        <label for="pieces_count_box">
+          Pieces count
+        </label>
+
+        <input type="text" id="pieces_count_box" name="query_pieces_count">
+      </div>
+
+      <button>
+        Create composer
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Era
+        </th>
+
+        <th>
+          Pieces count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_composers.each do |a_composer| %>
+      <tr>
+        <td>
+          <%= a_composer.id %>
+        </td>
+
+        <td>
+          <%= a_composer.name %>
+        </td>
+
+        <td>
+          <%= a_composer.era %>
+        </td>
+
+        <td>
+          <%= a_composer.pieces_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_composer.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_composer.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/composers/<%= a_composer.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

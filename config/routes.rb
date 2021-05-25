@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Composer resource:
+
+  # CREATE
+  post("/insert_composer", { :controller => "composers", :action => "create" })
+          
+  # READ
+  get("/composers", { :controller => "composers", :action => "index" })
+  
+  get("/composers/:path_id", { :controller => "composers", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_composer/:path_id", { :controller => "composers", :action => "update" })
+  
+  # DELETE
+  get("/delete_composer/:path_id", { :controller => "composers", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the User account:
 
   # SIGN UP FORM
