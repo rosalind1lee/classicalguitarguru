@@ -8,6 +8,7 @@
 
 <hr>
 
+<% if @current_user != nil%>
 <div>
   <div>
     <h2>
@@ -39,6 +40,7 @@
         <input type="text" id="arranger_id_box" name="query_arranger_id">
       </div>
 
+      <!--
       <div>
         <label for="ratings_count_box">
           Ratings count
@@ -62,6 +64,7 @@
 
         <input type="text" id="comments_count_box" name="query_comments_count">
       </div>
+      -->
 
       <button>
         Create piece
@@ -69,6 +72,7 @@
     </form>
   </div>
 </div>
+<% end %>
 
 <hr>
 <div>

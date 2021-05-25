@@ -41,9 +41,9 @@ class UserAuthenticationController < ApplicationController
     @user.email = params.fetch("query_email")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
-    @user.ratings_count = params.fetch("query_ratings_count")
-    @user.favorites_count = params.fetch("query_favorites_count")
-    @user.comments_count = params.fetch("query_comments_count")
+    #@user.ratings_count = params.fetch("query_ratings_count")
+    #@user.favorites_count = params.fetch("query_favorites_count")
+    #@user.comments_count = params.fetch("query_comments_count")
 
     save_status = @user.save
 
@@ -65,9 +65,9 @@ class UserAuthenticationController < ApplicationController
     @user.email = params.fetch("query_email")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
-    @user.ratings_count = params.fetch("query_ratings_count")
-    @user.favorites_count = params.fetch("query_favorites_count")
-    @user.comments_count = params.fetch("query_comments_count")
+    #@user.ratings_count = params.fetch("query_ratings_count")
+    #@user.favorites_count = params.fetch("query_favorites_count")
+    #@user.comments_count = params.fetch("query_comments_count")
     
     if @user.valid?
       @user.save
