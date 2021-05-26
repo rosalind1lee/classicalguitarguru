@@ -4,6 +4,9 @@ class RatingsController < ApplicationController
 
     @list_of_ratings = matching_ratings.order({ :created_at => :desc })
 
+    matching_pieces = Piece.all
+    @list_of_pieces = matching_pieces
+    
     render({ :template => "ratings/index.html.erb" })
   end
 
