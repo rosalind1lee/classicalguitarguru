@@ -4,6 +4,9 @@ class FavoritesController < ApplicationController
 
     @list_of_favorites = matching_favorites.order({ :created_at => :desc })
 
+    matching_pieces = Piece.all
+    @list_of_pieces = matching_pieces
+
     render({ :template => "favorites/index.html.erb" })
   end
 
@@ -20,7 +23,7 @@ class FavoritesController < ApplicationController
   def create
     the_favorite = Favorite.new
     the_favorite.piece_id = params.fetch("query_piece_id")
-    the_favorite.user_id = params.fetch("query_user_id")
+    the_favorite.user_id = @current_user.id
 
     if the_favorite.valid?
       the_favorite.save

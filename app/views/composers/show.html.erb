@@ -63,64 +63,65 @@
 
 <hr>
 
-
-<div>
+<% if @current_user != nil%>
   <div>
-    <h2>
-      Edit composer
-    </h2>
+    <div>
+      <h2>
+        Edit composer
+      </h2>
 
-    <form action="/modify_composer/<%= @the_composer.id %>"  method="post" >
-      <div>
-        <label for="name_box">
-          Name
-        </label>
+      <form action="/modify_composer/<%= @the_composer.id %>"  method="post" >
+        <div>
+          <label for="name_box">
+            Name
+          </label>
 
-        <input type="text" id="name_box" name="query_name" value="<%= @the_composer.name %>">
-      </div>
+          <input type="text" id="name_box" name="query_name" value="<%= @the_composer.name %>">
+        </div>
 
-      <div>
-        <label for="era_box">
-          Era
-        </label>
+        <div>
+          <label for="era_box">
+            Era
+          </label>
 
-        <select name="query_era" id="era_box">
-          <option value="Medieval">
-              Medieval
-          </option>
-          <option value="Renaissance">
-              Renaissance
-          </option>
-          <option value="Baroque">
-              Baroque
-          </option>
-          <option value="Classical">
-              Classical
-          </option>
-          <option value="Romantic">
-              Romantic
-          </option>
-          <option value="Contemporary">
-              Contemporary
-          </option>
-        </select>
-      </div>
+          <select name="query_era" id="era_box">
+            <option value="Medieval">
+                Medieval
+            </option>
+            <option value="Renaissance">
+                Renaissance
+            </option>
+            <option value="Baroque">
+                Baroque
+            </option>
+            <option value="Classical">
+                Classical
+            </option>
+            <option value="Romantic">
+                Romantic
+            </option>
+            <option value="Contemporary">
+                Contemporary
+            </option>
+          </select>
+        </div>
 
-      <!--
-      <div>
-        <label for="pieces_count_box">
-          Pieces count
-        </label>
+        <!--
+        <div>
+          <label for="pieces_count_box">
+            Pieces count
+          </label>
 
-        <input type="text" id="pieces_count_box" name="query_pieces_count" value="<%= @the_composer.pieces_count %>">
-      </div>
-      -->
+          <input type="text" id="pieces_count_box" name="query_pieces_count" value="<%= @the_composer.pieces_count %>">
+        </div>
+        -->
 
-      <button>
-        Update composer
-      </button>
-    </form>
+        <button>
+          Update composer
+        </button>
+      </form>
+    </div>
   </div>
-</div>
+<% end %>
 
 <hr>

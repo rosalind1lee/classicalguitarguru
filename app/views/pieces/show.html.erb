@@ -11,6 +11,22 @@
         </a>
       </div>
 
+      <% if @current_user != nil %>
+        <% if @fav %>
+          <a href="/delete_favorite/<%=@fav.id%>" method="get">
+              Un-Favorite
+          </a>
+        <% else %>
+          <form action="/insert_favorite" method="post">
+            <input type="hidden" value="<%=@the_piece.id%>" id="piece_id_box" name="query_piece_id" class="form-control">
+            <input type="hidden" id="user_id_box" name="query_user_id" value="<%=@current_user.id%>">
+            <button class="btn btn-block btn-outline-secondary">
+              Favorite this piece
+            </button>
+          </form>
+        <% end %>
+      <% end %>
+
       <!--
       <div>
         <a href="/delete_piece/<%= @the_piece.id %>">
@@ -89,83 +105,84 @@
 
 <hr>
 
-
-<div>
+<% if @current_user != nil%>
   <div>
-    <h2>
-      Edit piece
-    </h2>
+    <div>
+      <h2>
+        Edit piece
+      </h2>
 
-    <form action="/modify_piece/<%= @the_piece.id %>"  method="post" >
-      <div>
-        <label for="title_box">
-          Title
-        </label>
+      <form action="/modify_piece/<%= @the_piece.id %>"  method="post" >
+        <div>
+          <label for="title_box">
+            Title
+          </label>
 
-        <input type="text" id="title_box" name="query_title" value="<%= @the_piece.title %>">
-      </div>
+          <input type="text" id="title_box" name="query_title" value="<%= @the_piece.title %>">
+        </div>
 
-      <div>
-        <label for="composer_id_box">
-          Composer
-        </label>
+        <div>
+          <label for="composer_id_box">
+            Composer
+          </label>
 
-        <select name="query_composer_id" id="composer_id_box">
-          <% @list_of_composers.each do |a_composer| %>
-            <option value="<%=a_composer.id%>">
-              <%=a_composer.name%>
-            </option>
-          <% end %>
-        </select>
+          <select name="query_composer_id" id="composer_id_box">
+            <% @list_of_composers.each do |a_composer| %>
+              <option value="<%=a_composer.id%>">
+                <%=a_composer.name%>
+              </option>
+            <% end %>
+          </select>
 
-      </div>
+        </div>
 
-      <div>
-        <label for="arranger_id_box">
-          Arranger
-        </label>
+        <div>
+          <label for="arranger_id_box">
+            Arranger
+          </label>
 
-        <select name="query_arranger_id" id="arranger_id_box">
-          <% @list_of_arrangers.each do |a_arranger| %>
-            <option value="<%=a_arranger.id%>">
-              <%=a_arranger.name%>
-            </option>
-          <% end %>
-        </select>
+          <select name="query_arranger_id" id="arranger_id_box">
+            <% @list_of_arrangers.each do |a_arranger| %>
+              <option value="<%=a_arranger.id%>">
+                <%=a_arranger.name%>
+              </option>
+            <% end %>
+          </select>
 
-      </div>
+        </div>
 
-      <!--
-      <div>
-        <label for="ratings_count_box">
-          Ratings count
-        </label>
+        <!--
+        <div>
+          <label for="ratings_count_box">
+            Ratings count
+          </label>
 
-        <input type="text" id="ratings_count_box" name="query_ratings_count" value="<%= @the_piece.ratings_count %>">
-      </div>
+          <input type="text" id="ratings_count_box" name="query_ratings_count" value="<%= @the_piece.ratings_count %>">
+        </div>
 
-      <div>
-        <label for="favorites_count_box">
-          Favorites count
-        </label>
+        <div>
+          <label for="favorites_count_box">
+            Favorites count
+          </label>
 
-        <input type="text" id="favorites_count_box" name="query_favorites_count" value="<%= @the_piece.favorites_count %>">
-      </div>
+          <input type="text" id="favorites_count_box" name="query_favorites_count" value="<%= @the_piece.favorites_count %>">
+        </div>
 
-      <div>
-        <label for="comments_count_box">
-          Comments count
-        </label>
+        <div>
+          <label for="comments_count_box">
+            Comments count
+          </label>
 
-        <input type="text" id="comments_count_box" name="query_comments_count" value="<%= @the_piece.comments_count %>">
-      </div>
-      -->
+          <input type="text" id="comments_count_box" name="query_comments_count" value="<%= @the_piece.comments_count %>">
+        </div>
+        -->
 
-      <button>
-        Update piece
-      </button>
-    </form>
+        <button>
+          Update piece
+        </button>
+      </form>
+    </div>
   </div>
-</div>
+<% end %>
 
 <hr>

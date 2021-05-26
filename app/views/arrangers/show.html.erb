@@ -57,37 +57,38 @@
 
 <hr>
 
-
-<div>
+<% if @current_user != nil%>
   <div>
-    <h2>
-      Edit arranger
-    </h2>
+    <div>
+      <h2>
+        Edit arranger
+      </h2>
 
-    <form action="/modify_arranger/<%= @the_arranger.id %>"  method="post" >
-      <div>
-        <label for="name_box">
-          Name
-        </label>
+      <form action="/modify_arranger/<%= @the_arranger.id %>"  method="post" >
+        <div>
+          <label for="name_box">
+            Name
+          </label>
 
-        <input type="text" id="name_box" name="query_name" value="<%= @the_arranger.name %>">
-      </div>
+          <input type="text" id="name_box" name="query_name" value="<%= @the_arranger.name %>">
+        </div>
 
-      <!--
-      <div>
-        <label for="pieces_count_box">
-          Pieces count
-        </label>
+        <!--
+        <div>
+          <label for="pieces_count_box">
+            Pieces count
+          </label>
 
-        <input type="text" id="pieces_count_box" name="query_pieces_count" value="<%= @the_arranger.pieces_count %>">
-      </div>
-      -->
+          <input type="text" id="pieces_count_box" name="query_pieces_count" value="<%= @the_arranger.pieces_count %>">
+        </div>
+        -->
 
-      <button>
-        Update arranger
-      </button>
-    </form>
+        <button>
+          Update arranger
+        </button>
+      </form>
+    </div>
   </div>
-</div>
+<% end %>
 
 <hr>

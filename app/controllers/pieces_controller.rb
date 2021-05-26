@@ -20,6 +20,10 @@ class PiecesController < ApplicationController
 
     @list_of_composers = Composer.all
     @list_of_arrangers = Arranger.all
+    
+    if @current_user != nil
+      @fav = Favorite.where({ :user_id => @current_user.id }).where({ :piece_id => the_id}).at(0)
+    end
 
     render({ :template => "pieces/show.html.erb" })
   end
