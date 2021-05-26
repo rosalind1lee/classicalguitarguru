@@ -6,8 +6,12 @@ class RatingsController < ApplicationController
 
     matching_pieces = Piece.all
     @list_of_pieces = matching_pieces
-    
-    render({ :template => "ratings/index.html.erb" })
+
+    if @current_user != nil
+      render({ :template => "ratings/index.html.erb" })
+    else
+      redirect_to("/user_sign_in", { :alert => "You must be logged in to view this page."})
+    end  
   end
 
   def show
@@ -17,7 +21,11 @@ class RatingsController < ApplicationController
 
     @the_rating = matching_ratings.at(0)
 
-    render({ :template => "ratings/show.html.erb" })
+    if @current_user != nil
+      render({ :template => "ratings/show.html.erb" })
+    else
+      redirect_to("/user_sign_in", { :alert => "You must be logged in to view this page."})
+    end  
   end
 
   def create
@@ -40,7 +48,8 @@ class RatingsController < ApplicationController
     the_id = params.fetch("path_id")
     the_rating = Rating.where({ :id => the_id }).at(0)
 
-    the_rating.user_id = params.fetch("query_user_id")
+    #the_rating.user_id = params.fetch("query_user_id")
+    the_rating.user_id = @current_user.id
     the_rating.score = params.fetch("query_score")
     the_rating.piece_id = params.fetch("query_piece_id")
 
