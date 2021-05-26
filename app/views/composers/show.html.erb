@@ -85,22 +85,25 @@
           </label>
 
           <select name="query_era" id="era_box">
-            <option value="Medieval">
+            <option value="Not Applicable" <% if @the_composer.era == "Not Applicable"; %> selected <% end %>>
+              Not Applicable
+            </option>
+            <option value="Medieval" <% if @the_composer.era == "Medieval";  %> selected <% end %>>
                 Medieval
             </option>
-            <option value="Renaissance">
+            <option value="Renaissance" <% if @the_composer.era == "Renaissance";  %> selected <% end %>>
                 Renaissance
             </option>
-            <option value="Baroque">
+            <option value="Baroque" <% if @the_composer.era == "Baroque";  %> selected <% end %>>
                 Baroque
             </option>
-            <option value="Classical">
+            <option value="Classical" <% if @the_composer.era == "Classical";  %> selected <% end %>>
                 Classical
             </option>
-            <option value="Romantic">
+            <option value="Romantic" <% if @the_composer.era == "Romantic";  %> selected <% end %>>
                 Romantic
             </option>
-            <option value="Contemporary">
+            <option value="Contemporary" <% if @the_composer.era == "Contemporary";  %> selected <% end %>>
                 Contemporary
             </option>
           </select>

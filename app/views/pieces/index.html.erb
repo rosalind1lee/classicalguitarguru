@@ -31,7 +31,11 @@
 
         <select name="query_composer_id" id="composer_id_box">
           <% @list_of_composers.each do |a_composer| %>
-            <option value="<%=a_composer.id%>">
+            <% if a_composer.id == 1 %>
+              <option value="<%=a_composer.id%>" selected>
+            <% else %>
+              <option value="<%=a_composer.id%>">
+            <% end %>
               <%=a_composer.name%>
             </option>
           <% end %>
