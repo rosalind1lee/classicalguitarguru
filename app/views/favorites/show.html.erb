@@ -74,7 +74,11 @@
 
         <select name="query_piece_id" id="piece_id_box">
           <% @list_of_pieces.each do |a_piece| %>
-            <option value="<%=a_piece.id%>">
+            <% if a_piece.id == @the_favorite.piece_id%>
+              <option value="<%=a_piece.id%>" selected>
+            <% else %>
+              <option value="<%=a_piece.id%>">
+            <% end %>
               <% if a_piece.composer != nil %>
                 <%=a_piece.title+" - "+a_piece.composer.name%>
               <% else %>

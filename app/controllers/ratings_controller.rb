@@ -19,8 +19,10 @@ class RatingsController < ApplicationController
 
   def create
     the_rating = Rating.new
-    the_rating.user_id = params.fetch("query_user_id")
+    the_rating.user_id = @current_user.id
+    #the_rating.user_id = params.fetch("query_user_id")
     the_rating.score = params.fetch("query_score")
+    #the_rating.piece_id = @the_piece.id
     the_rating.piece_id = params.fetch("query_piece_id")
 
     if the_rating.valid?

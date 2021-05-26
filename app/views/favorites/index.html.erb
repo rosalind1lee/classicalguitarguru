@@ -21,6 +21,7 @@
         </label>
 
         <select name="query_piece_id" id="piece_id_box">
+          <option disabled selected value> -- select an option -- </option>
           <% @list_of_pieces.each do |a_piece| %>
             <option value="<%=a_piece.id%>">
               <% if a_piece.composer != nil %>
