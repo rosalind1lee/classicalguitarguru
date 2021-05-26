@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Favorite #<%= @the_favorite.id %> details
+      Favorite <%= @the_favorite.piece.title %> details
     </h1>
 
     <div>
@@ -23,16 +23,22 @@
         Piece
       </dt>
       <dd>
-        <%= @the_favorite.piece_id %>
+        <%= @the_favorite.piece.title %>
       </dd>
 
+      
       <dt>
-        User
+        Composer
       </dt>
       <dd>
-        <%= @the_favorite.user_id %>
+        <% if @the_favorite.piece.composer != nil %>
+          <%= @the_favorite.piece.composer.name %>
+        <% else %>
+          Unknown
+        <% end %>
       </dd>
 
+      <!--
       <dt>
         Created at
       </dt>
@@ -46,6 +52,7 @@
       <dd>
         <%= time_ago_in_words(@the_favorite.updated_at) %> ago
       </dd>
+      -->
     </dl>
   </div>
 </div>
@@ -65,9 +72,20 @@
           Piece
         </label>
 
-        <input type="text" id="piece_id_box" name="query_piece_id" value="<%= @the_favorite.piece_id %>">
+        <select name="query_piece_id" id="piece_id_box">
+          <% @list_of_pieces.each do |a_piece| %>
+            <option value="<%=a_piece.id%>">
+              <% if a_piece.composer != nil %>
+                <%=a_piece.title+" - "+a_piece.composer.name%>
+              <% else %>
+                <%=a_piece.title+" - "+"Anonymous"%>
+              <% end %>
+            </option>
+          <% end %>
+        </select>
       </div>
 
+      <!--
       <div>
         <label for="user_id_box">
           User
@@ -75,6 +93,7 @@
 
         <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_favorite.user_id %>">
       </div>
+      -->
 
       <button>
         Update favorite

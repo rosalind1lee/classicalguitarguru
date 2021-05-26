@@ -17,6 +17,9 @@ class FavoritesController < ApplicationController
 
     @the_favorite = matching_favorites.at(0)
 
+    matching_pieces = Piece.all
+    @list_of_pieces = matching_pieces
+
     render({ :template => "favorites/show.html.erb" })
   end
 
