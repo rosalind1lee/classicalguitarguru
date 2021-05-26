@@ -1,15 +1,15 @@
 class FavoritesController < ApplicationController
   def index
-    matching_favorites = Favorite.where({ :user_id => @current_user.id })
-
-    @list_of_favorites = matching_favorites.order({ :created_at => :desc })
-
-    matching_pieces = Piece.all
-    @list_of_pieces = matching_pieces
-
     if @current_user != nil
+      matching_favorites = Favorite.where({ :user_id => @current_user.id })
+
+      @list_of_favorites = matching_favorites.order({ :created_at => :desc })
+
+      matching_pieces = Piece.all
+      @list_of_pieces = matching_pieces
       render({ :template => "favorites/index.html.erb" })
     else
+
       redirect_to("/user_sign_in", { :alert => "You must be logged in to view this page."})
     end  
   end
