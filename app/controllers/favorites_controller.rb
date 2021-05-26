@@ -7,7 +7,11 @@ class FavoritesController < ApplicationController
     matching_pieces = Piece.all
     @list_of_pieces = matching_pieces
 
-    render({ :template => "favorites/index.html.erb" })
+    if @current_user != nil
+      render({ :template => "favorites/index.html.erb" })
+    else
+      redirect_to("/user_sign_in", { :alert => "You must be logged in to view this page."})
+    end  
   end
 
   def show
@@ -20,7 +24,11 @@ class FavoritesController < ApplicationController
     matching_pieces = Piece.all
     @list_of_pieces = matching_pieces
 
-    render({ :template => "favorites/show.html.erb" })
+    if @current_user != nil
+      render({ :template => "favorites/show.html.erb" })
+    else
+        redirect_to("/user_sign_in", { :alert => "You must be logged in to view this page."})
+    end
   end
 
   def create
