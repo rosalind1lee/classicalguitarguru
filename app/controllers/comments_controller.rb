@@ -37,9 +37,13 @@ class CommentsController < ApplicationController
 
     if the_comment.valid?
       the_comment.save
-      redirect_to("/pieces/#{the_comment.piece_id}", { :notice => "Comment created successfully." })
+      flash[:notice] = "Comment created successfully."
+      redirect_back(fallback_location: "/comments/#{the_comment.id}")
+      #redirect_to("/pieces/#{the_comment.piece_id}", { :notice => "Comment created successfully." })
     else
-      redirect_to("/pieces/#{the_comment.piece_id}", { :notice => "Comment failed to create successfully." })
+      flash[:alert] = "Comment failed to create successfully."
+      redirect_back(fallback_location: "/comments")
+      #redirect_to("/pieces/#{the_comment.piece_id}", { :notice => "Comment failed to create successfully." })
     end
   end
 
@@ -53,9 +57,14 @@ class CommentsController < ApplicationController
 
     if the_comment.valid?
       the_comment.save
-      redirect_to("/comments/#{the_comment.id}", { :notice => "Comment updated successfully."} )
+      flash[:notice] = "Comment updated successfully."
+      redirect_back(fallback_location: "/comments/#{the_comment.id}")
+      #redirect_to :back, notice: "Comment updated successfully."
+      #redirect_to("/comments/#{the_comment.id}", { :notice => "Comment updated successfully."} )
     else
-      redirect_to("/comments/#{the_comment.id}", { :alert => "Comment failed to update successfully." })
+      flash[:alert] = "Comment failed to update successfully."
+      redirect_back(fallback_location: "/comments/#{the_comment.id}")
+      #redirect_to("/comments/#{the_comment.id}", { :alert => "Comment failed to update successfully." })
     end
   end
 
