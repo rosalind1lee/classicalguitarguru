@@ -1,26 +1,34 @@
 class CommentsController < ApplicationController
   def index
-    matching_comments = Comment.all
-
-    @list_of_comments = matching_comments.order({ :created_at => :desc })
-
-    render({ :template => "comments/index.html.erb" })
+    if @current_user != nil
+      matching_comments = Comment.where({ :user_id => @current_user.id })
+      @list_of_comments = matching_comments.order({ :created_at => :desc })
+      
+      matching_pieces = Piece.all
+      @list_of_pieces = matching_pieces
+      render({ :template => "comments/index.html.erb" })
+    else
+      redirect_to("/user_sign_in", { :alert => "You must be logged in to view this page."})
+    end 
   end
 
   def show
-    the_id = params.fetch("path_id")
-
-    matching_comments = Comment.where({ :id => the_id })
-
-    @the_comment = matching_comments.at(0)
-
-    render({ :template => "comments/show.html.erb" })
+    if @current_user != nil
+      the_id = params.fetch("path_id")
+      matching_comments = Comment.where({ :id => the_id })
+      @the_comment = matching_comments.at(0)
+      matching_pieces = Piece.all
+      @list_of_pieces = matching_pieces
+      render({ :template => "comments/show.html.erb" })
+    else
+      redirect_to("/user_sign_in", { :alert => "You must be logged in to view this page."})
+    end
   end
 
   def create
     the_comment = Comment.new
     the_comment.piece_id = params.fetch("query_piece_id")
-    the_comment.user_id = params.fetch("query_user_id")
+    the_comment.user_id = @current_user.id
     the_comment.comment_text = params.fetch("query_comment_text")
 
     if the_comment.valid?
@@ -35,8 +43,8 @@ class CommentsController < ApplicationController
     the_id = params.fetch("path_id")
     the_comment = Comment.where({ :id => the_id }).at(0)
 
-    the_comment.piece_id = params.fetch("query_piece_id")
-    the_comment.user_id = params.fetch("query_user_id")
+    the_comment.piece_id = the_comment.piece_id
+    the_comment.user_id = @current_user.id
     the_comment.comment_text = params.fetch("query_comment_text")
 
     if the_comment.valid?

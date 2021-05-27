@@ -264,8 +264,6 @@
       Posted at
     </th>
 
-    <th>
-    </th>
   </tr>
 
   <% @list_of_comments.each do |a_comment| %>
@@ -278,11 +276,6 @@
       <%= time_ago_in_words(a_comment.updated_at) %> ago
     </td>
 
-    <td>
-      <a href="/comments/<%= a_comment.id %>">
-        Show details
-      </a>
-    </td>
   </tr>
   <% end %>
 </table>

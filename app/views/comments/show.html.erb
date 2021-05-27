@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Comment #<%= @the_comment.id %> details
+      Your comment on <%= @the_comment.piece.title %>
     </h1>
 
     <div>
@@ -23,29 +23,23 @@
         Piece
       </dt>
       <dd>
-        <%= @the_comment.piece_id %>
+        <%= @the_comment.piece.title %>
       </dd>
 
       <dt>
-        User
+        Comment
       </dt>
       <dd>
-        <%= @the_comment.user_id %>
+        <%= @the_comment.comment_text %>
       </dd>
 
       <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_comment.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
+        Posted
       </dt>
       <dd>
         <%= time_ago_in_words(@the_comment.updated_at) %> ago
       </dd>
+
     </dl>
   </div>
 </div>
@@ -60,20 +54,14 @@
     </h2>
 
     <form action="/modify_comment/<%= @the_comment.id %>"  method="post" >
-      <div>
-        <label for="piece_id_box">
-          Piece
-        </label>
-
-        <input type="text" id="piece_id_box" name="query_piece_id" value="<%= @the_comment.piece_id %>">
-      </div>
+      <input type="hidden" id="piece_id_box" name="query_piece_id" value="<%= @the_comment.piece_id%>">
 
       <div>
-        <label for="user_id_box">
-          User
+        <label for="comment_text_box">
+          Comment
         </label>
 
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_comment.user_id %>">
+        <input type="text" id="comment_text_box" name="query_comment_text" value="<%= @the_comment.comment_text %>">
       </div>
 
       <button>
