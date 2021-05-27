@@ -13,13 +13,17 @@ class CommentsController < ApplicationController
   end
 
   def show
-    if @current_user != nil
-      the_id = params.fetch("path_id")
-      matching_comments = Comment.where({ :id => the_id })
-      @the_comment = matching_comments.at(0)
-      matching_pieces = Piece.all
-      @list_of_pieces = matching_pieces
-      render({ :template => "comments/show.html.erb" })
+    the_id = params.fetch("path_id")
+    matching_comments = Comment.where({ :id => the_id })
+    @the_comment = matching_comments.at(0)
+    if @current_user != nil 
+      if @the_comment.user_id != @current_user.id
+        redirect_to("/user_sign_in", { :alert => "You must be logged in as the comment author to view this page."})
+      else
+        matching_pieces = Piece.all
+        @list_of_pieces = matching_pieces
+        render({ :template => "comments/show.html.erb" })
+      end
     else
       redirect_to("/user_sign_in", { :alert => "You must be logged in to view this page."})
     end
