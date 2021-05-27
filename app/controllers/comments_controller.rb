@@ -21,12 +21,13 @@ class CommentsController < ApplicationController
     the_comment = Comment.new
     the_comment.piece_id = params.fetch("query_piece_id")
     the_comment.user_id = params.fetch("query_user_id")
+    the_comment.comment_text = params.fetch("query_comment_text")
 
     if the_comment.valid?
       the_comment.save
-      redirect_to("/comments", { :notice => "Comment created successfully." })
+      redirect_to("/pieces/#{the_comment.piece_id}", { :notice => "Comment created successfully." })
     else
-      redirect_to("/comments", { :notice => "Comment failed to create successfully." })
+      redirect_to("/pieces/#{the_comment.piece_id}", { :notice => "Comment failed to create successfully." })
     end
   end
 
@@ -36,6 +37,7 @@ class CommentsController < ApplicationController
 
     the_comment.piece_id = params.fetch("query_piece_id")
     the_comment.user_id = params.fetch("query_user_id")
+    the_comment.comment_text = params.fetch("query_comment_text")
 
     if the_comment.valid?
       the_comment.save
