@@ -1,13 +1,14 @@
 class RatingsController < ApplicationController
   def index
-    matching_ratings = Rating.all
-
-    @list_of_ratings = matching_ratings.order({ :created_at => :desc })
-
-    matching_pieces = Piece.all
-    @list_of_pieces = matching_pieces
-
     if @current_user != nil
+
+      matching_ratings = Rating.where({ :user_id => @current_user.id })
+
+      @list_of_ratings = matching_ratings.order({ :created_at => :desc })
+
+      matching_pieces = Piece.all
+      @list_of_pieces = matching_pieces
+
       render({ :template => "ratings/index.html.erb" })
     else
       redirect_to("/user_sign_in", { :alert => "You must be logged in to view this page."})
