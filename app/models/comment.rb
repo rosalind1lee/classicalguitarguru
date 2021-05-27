@@ -2,11 +2,12 @@
 #
 # Table name: comments
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  piece_id   :integer
-#  user_id    :integer
+#  id           :integer          not null, primary key
+#  comment_text :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  piece_id     :integer
+#  user_id      :integer
 #
 class Comment < ApplicationRecord
   belongs_to(:user, { :required => false, :class_name => "User", :foreign_key => "user_id", :counter_cache => true })
