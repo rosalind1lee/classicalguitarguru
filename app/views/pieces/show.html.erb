@@ -224,6 +224,46 @@
   <hr>
 <% end %>
 
+<% if @current_user != nil && @rating_exists != nil %>
+  <div>
+    <div>
+      <h2>
+        Edit rating
+      </h2>
+
+      <form action="/modify_rating/<%= @rating_exists.id %>"  method="post" >
+        <div>
+          <label for="score_box">
+            Score
+          </label>
+
+          <select name="query_score" id="score_box">
+            <% 1.upto(10) do |i| %>
+              <option value="<%=i%>">
+                <% if i == 1 %>
+                  <%=i%> - Easiest
+                <% elsif i == 10 %>
+                  <%=i%> - Hardest
+                <% else %>
+                  <%=i%>
+                <% end %>
+              </option>
+            <% end %>
+          </select>
+        </div>
+
+        <div>
+          <input type="hidden" id="piece_id_box" name="query_piece_id" value="<%= @rating_exists.piece_id %>">
+        </div>
+
+        <button>
+          Update rating
+        </button>
+      </form>
+    </div>
+  </div>
+  <hr>
+<% end %>
 
 
 <% if @current_user != nil %>
