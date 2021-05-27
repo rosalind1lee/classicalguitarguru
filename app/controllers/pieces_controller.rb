@@ -22,9 +22,8 @@ class PiecesController < ApplicationController
     @list_of_arrangers = Arranger.all
     @list_of_comments = Comment.where({ :piece_id => the_id}).order({ :updated_at => :desc })
     
-    @rating_exists = Rating.where({ :user_id => @current_user.id }).where({ :piece_id => the_id}).at(0)
-
-    if @current_user != nil
+    if @current_user
+      @rating_exists = Rating.where({ :piece_id => the_id }).where({ :user_id => @current_user.id }).at(0)
       @fav = Favorite.where({ :user_id => @current_user.id }).where({ :piece_id => the_id}).at(0)
     end
 
