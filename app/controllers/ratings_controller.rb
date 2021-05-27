@@ -23,7 +23,11 @@ class RatingsController < ApplicationController
     @the_rating = matching_ratings.at(0)
 
     if @current_user != nil
-      render({ :template => "ratings/show.html.erb" })
+      if @the_rating.user_id != @current_user.id
+        redirect_to("/user_sign_in", { :alert => "You must be logged in as the rating owner to view this page."})
+      else
+        render({ :template => "ratings/show.html.erb" })
+      end
     else
       redirect_to("/user_sign_in", { :alert => "You must be logged in to view this page."})
     end  
