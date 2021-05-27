@@ -37,7 +37,7 @@ class RatingsController < ApplicationController
       the_rate = Rating.new
       the_rate.user_id = the_user_id
       the_rate.piece_id = the_piece_id
-      the_rating.score = params.fetch("query_score")
+      the_rate.score = params.fetch("query_score")
       if the_rate.valid?
         the_rate.save
         redirect_to("/ratings", { :notice => "Rating created successfully." })

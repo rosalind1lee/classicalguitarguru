@@ -183,9 +183,10 @@
       </form>
     </div>
   </div>
+  <hr>
 <% end %>
 
-<hr>
+
 
 <% if @current_user != nil %>
   <h2>
@@ -220,34 +221,33 @@
       Create rating
     </button>
   </form>
+  <hr>
 <% end %>
 
-<hr>
 
-<h2>
-  Add a new comment
-</h2>
 
-<form action="/insert_comment" method="post">
-  <div>
-    <label for="piece_id_box">
-      Piece
-    </label>
+<% if @current_user != nil %>
+  <h2>
+    Add a new comment
+  </h2>
 
-    <input type="text" id="piece_id_box" name="query_piece_id">
-  </div>
+  <form action="/insert_comment" method="post">
+    <input type="hidden" value="<%=@the_piece.id%>" id="piece_id_box" name="query_piece_id" class="form-control">
+    <input type="hidden" id="user_id_box" name="query_user_id" value="<%=@current_user.id%>">
 
-  <div>
-    <label for="user_id_box">
-      User
-    </label>
+    <div>
+      <label for="comment_text_box">
+        Comment
+      </label>
 
-    <input type="text" id="user_id_box" name="query_user_id">
-  </div>
+      <input type="text" id="comment_text_box" name="query_comment_text">
+    </div>
 
-  <button>
-    Create comment
-  </button>
-</form>
+    <button>
+      Create comment
+    </button>
+  </form>
 
-<hr>
+  <hr>
+<% end %>
+
