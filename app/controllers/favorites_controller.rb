@@ -45,10 +45,10 @@ class FavoritesController < ApplicationController
         the_favorite.save
         redirect_to("/favorites", { :notice => "Favorite created successfully." })
       else
-        redirect_to("/favorites", { :notice => "Favorite failed to create successfully." })
+        redirect_to("/favorites", { :alert => "Favorite failed to create successfully." })
       end
     else
-      redirect_to("/favorites", { :notice => "Piece is already marked as favorite" })
+      redirect_to("/favorites", { :alert => "Piece is already in your favorites." })
     end
   end
 
@@ -56,15 +56,22 @@ class FavoritesController < ApplicationController
     the_id = params.fetch("path_id")
     the_favorite = Favorite.where({ :id => the_id }).at(0)
 
-    the_favorite.piece_id = params.fetch("query_piece_id")
-    the_favorite.user_id = @current_user.id
-    #the_favorite.user_id = params.fetch("query_user_id")
+    the_piece_id = params.fetch("query_piece_id")
+    the_user_id = @current_user.id
 
-    if the_favorite.valid?
-      the_favorite.save
-      redirect_to("/favorites/#{the_favorite.id}", { :notice => "Favorite updated successfully."} )
+    fav = Favorite.where({ :user_id => the_user_id }).where({ :piece_id => the_piece_id}).at(0)
+
+    if fav == nil
+      the_favorite.piece_id = the_piece_id
+      the_favorite.user_id = the_user_id
+      if the_favorite.valid?
+        the_favorite.save
+        redirect_to("/favorites/#{the_favorite.id}", { :notice => "Favorite updated successfully."} )
+      else
+        redirect_to("/favorites/#{the_favorite.id}", { :alert => "Favorite failed to update successfully." })      
+      end
     else
-      redirect_to("/favorites/#{the_favorite.id}", { :alert => "Favorite failed to update successfully." })
+      redirect_to("/favorites/#{the_favorite.id}", { :alert => "Piece is already in your favorites." })
     end
   end
 
