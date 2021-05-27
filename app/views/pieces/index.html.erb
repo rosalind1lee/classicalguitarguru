@@ -115,7 +115,7 @@
         </th>
 
         <th>
-          Ratings count
+          Average Rating
         </th>
 
         <th>
@@ -166,7 +166,7 @@
         </td>
 
         <td>
-          <%= a_piece.ratings_count %>
+          <%= a_piece.ratings.average(:score) %>
         </td>
 
         <td>

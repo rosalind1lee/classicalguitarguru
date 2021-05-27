@@ -63,10 +63,10 @@
       </dd>
 
       <dt>
-        Ratings count
+        Average Rating
       </dt>
       <dd>
-        <%= @the_piece.ratings_count %>
+        <%= @the_piece.ratings.average(:score) %>
       </dd>
 
       <dt>
