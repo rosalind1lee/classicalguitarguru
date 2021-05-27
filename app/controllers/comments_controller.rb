@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   def index
     if @current_user != nil
       matching_comments = Comment.where({ :user_id => @current_user.id })
-      @list_of_comments = matching_comments.order({ :created_at => :desc })
+      @list_of_comments = matching_comments.order({ :updated_at => :desc })
       
       matching_pieces = Piece.all
       @list_of_pieces = matching_pieces
