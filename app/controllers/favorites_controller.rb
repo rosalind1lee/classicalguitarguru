@@ -25,7 +25,11 @@ class FavoritesController < ApplicationController
     @list_of_pieces = matching_pieces
 
     if @current_user != nil
-      render({ :template => "favorites/show.html.erb" })
+      if @the_favorite == nil or @the_favorite.user_id != @current_user.id
+        redirect_to("/user_sign_in", { :alert => "You must be logged in as the favorite owner to view this page."})
+      else
+        render({ :template => "favorites/show.html.erb" })
+      end
     else
         redirect_to("/user_sign_in", { :alert => "You must be logged in to view this page."})
     end
