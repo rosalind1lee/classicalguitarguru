@@ -85,8 +85,11 @@ class RatingsController < ApplicationController
     the_id = params.fetch("path_id")
     the_rating = Rating.where({ :id => the_id }).at(0)
 
-    the_rating.destroy
-
-    redirect_to("/ratings", { :notice => "Rating deleted successfully."} )
+    if @current_user && the_rating.user_id == @current_user.id
+      the_rating.destroy
+      redirect_to("/ratings", { :notice => "Rating deleted successfully."} )
+    else
+      redirect_to("/user_sign_in", { :alert => "You must be logged in to perform this action."})
+    end
   end
 end

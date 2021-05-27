@@ -71,8 +71,11 @@ class PiecesController < ApplicationController
     the_id = params.fetch("path_id")
     the_piece = Piece.where({ :id => the_id }).at(0)
 
-    the_piece.destroy
-
-    redirect_to("/pieces", { :notice => "Piece deleted successfully."} )
+    if @current_user
+      the_piece.destroy
+      redirect_to("/pieces", { :notice => "Piece deleted successfully."} )
+    else
+      redirect_to("/user_sign_in", { :alert => "You must be logged in to perform this action."})
+    end
   end
 end

@@ -51,8 +51,11 @@ class ComposersController < ApplicationController
     the_id = params.fetch("path_id")
     the_composer = Composer.where({ :id => the_id }).at(0)
 
-    the_composer.destroy
-
-    redirect_to("/composers", { :notice => "Composer deleted successfully."} )
+    if @current_user
+      the_composer.destroy
+      redirect_to("/composers", { :notice => "Composer deleted successfully."} )
+    else
+      redirect_to("/user_sign_in", { :alert => "You must be logged in to perform this action."})
+    end
   end
 end

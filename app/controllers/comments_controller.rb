@@ -63,8 +63,11 @@ class CommentsController < ApplicationController
     the_id = params.fetch("path_id")
     the_comment = Comment.where({ :id => the_id }).at(0)
 
-    the_comment.destroy
-
-    redirect_to("/comments", { :notice => "Comment deleted successfully."} )
+    if @current_user && the_comment.user_id == @current_user.id
+      the_comment.destroy
+      redirect_to("/comments", { :notice => "Comment deleted successfully."} )
+    else
+      redirect_to("/user_sign_in", { :alert => "You must be logged in to perform this action."})
+    end
   end
 end
