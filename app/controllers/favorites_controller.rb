@@ -32,15 +32,23 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    the_favorite = Favorite.new
-    the_favorite.piece_id = params.fetch("query_piece_id")
-    the_favorite.user_id = @current_user.id
+    
+    the_piece_id = params.fetch("query_piece_id")
+    the_user_id = @current_user.id
+    fav = Favorite.where({ :user_id => the_user_id }).where({ :piece_id => the_piece_id}).at(0)
 
-    if the_favorite.valid?
-      the_favorite.save
-      redirect_to("/favorites", { :notice => "Favorite created successfully." })
+    if fav == nil
+      the_favorite = Favorite.new
+      the_favorite.user_id = the_user_id
+      the_favorite.piece_id = the_piece_id
+      if the_favorite.valid?
+        the_favorite.save
+        redirect_to("/favorites", { :notice => "Favorite created successfully." })
+      else
+        redirect_to("/favorites", { :notice => "Favorite failed to create successfully." })
+      end
     else
-      redirect_to("/favorites", { :notice => "Favorite failed to create successfully." })
+      redirect_to("/favorites", { :notice => "Piece is already marked as favorite" })
     end
   end
 
