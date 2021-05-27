@@ -29,36 +29,51 @@ class RatingsController < ApplicationController
   end
 
   def create
-    the_rating = Rating.new
-    the_rating.user_id = @current_user.id
-    #the_rating.user_id = params.fetch("query_user_id")
-    the_rating.score = params.fetch("query_score")
-    #the_rating.piece_id = @the_piece.id
-    the_rating.piece_id = params.fetch("query_piece_id")
+    the_piece_id = params.fetch("query_piece_id")
+    the_user_id = @current_user.id
+    rate = Rating.where({ :user_id => the_user_id }).where({ :piece_id => the_piece_id}).at(0)
 
-    if the_rating.valid?
-      the_rating.save
-      redirect_to("/ratings", { :notice => "Rating created successfully." })
+    if rate == nil
+      the_rate = Rating.new
+      the_rate.user_id = the_user_id
+      the_rate.piece_id = the_piece_id
+      the_rating.score = params.fetch("query_score")
+      if the_rate.valid?
+        the_rate.save
+        redirect_to("/ratings", { :notice => "Rating created successfully." })
+      else
+        redirect_to("/ratings", { :alert => "Rating failed to create successfully." })
+      end
     else
-      redirect_to("/ratings", { :notice => "Rating failed to create successfully." })
+      redirect_to("/ratings", { :alert => "You have already rated this piece." })
     end
+
+
   end
 
   def update
     the_id = params.fetch("path_id")
     the_rating = Rating.where({ :id => the_id }).at(0)
 
-    #the_rating.user_id = params.fetch("query_user_id")
-    the_rating.user_id = @current_user.id
-    the_rating.score = params.fetch("query_score")
-    the_rating.piece_id = params.fetch("query_piece_id")
+    the_piece_id = params.fetch("query_piece_id")
+    the_user_id = @current_user.id
 
-    if the_rating.valid?
-      the_rating.save
-      redirect_to("/ratings/#{the_rating.id}", { :notice => "Rating updated successfully."} )
+    rate = Rating.where({ :user_id => the_user_id }).where({ :piece_id => the_piece_id}).at(0)
+
+    if rate == nil
+      the_rating.user_id = the_user_id
+      the_rating.piece_id = the_piece_id
+      the_rating.score = params.fetch("query_score")
+      if the_rate.valid?
+        the_rate.save
+        redirect_to("/ratings", { :notice => "Rating created successfully." })
+      else
+        redirect_to("/ratings", { :alert => "Rating failed to create successfully." })
+      end
     else
-      redirect_to("/ratings/#{the_rating.id}", { :alert => "Rating failed to update successfully." })
+      redirect_to("/ratings", { :alert => "You have already rated this piece." })
     end
+
   end
 
   def destroy
