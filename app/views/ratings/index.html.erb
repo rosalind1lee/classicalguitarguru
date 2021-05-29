@@ -6,7 +6,64 @@
   </div>
 </div>
 
-<hr>
+<div>
+  <div>
+    <table class="table">
+      <tr>
+
+        <th scope="col">
+          Piece
+        </th>
+
+        <th scope="col">
+          Score
+        </th>
+
+        <th scope="col">
+          Details
+        </th>
+      </tr>
+
+      <% @list_of_ratings.each do |a_rating| %>
+      <tr>
+        <!--
+        <td>
+          <%= a_rating.id %>
+        </td>
+
+        <td>
+          <%= a_rating.user_id %>
+        </td>
+        -->
+
+        <td>
+          <%= a_rating.piece.title %>
+        </td>
+
+        <td>
+          <%= a_rating.score %>
+        </td>
+
+        <!--
+        <td>
+          <%= time_ago_in_words(a_rating.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_rating.updated_at) %> ago
+        </td>
+        -->
+
+        <td>
+          <a href="/ratings/<%= a_rating.id %>">
+            Show details
+          </a>
+        </td>
+
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
 
 <div>
   <div>
@@ -71,83 +128,3 @@
     </form>
   </div>
 </div>
-
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <!--
-        <th>
-          ID
-        </th>
-
-        <th>
-          User
-        </th>
-        -->
-
-        <th>
-          Piece
-        </th>
-
-        <th>
-          Score
-        </th>
-
-        <!--
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-        -->
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_ratings.each do |a_rating| %>
-      <tr>
-        <!--
-        <td>
-          <%= a_rating.id %>
-        </td>
-
-        <td>
-          <%= a_rating.user_id %>
-        </td>
-        -->
-
-        <td>
-          <%= a_rating.piece.title %>
-        </td>
-
-        <td>
-          <%= a_rating.score %>
-        </td>
-
-        <!--
-        <td>
-          <%= time_ago_in_words(a_rating.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_rating.updated_at) %> ago
-        </td>
-        -->
-
-        <td>
-          <a href="/ratings/<%= a_rating.id %>">
-            Show details
-          </a>
-        </td>
-
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>

@@ -265,6 +265,34 @@
   <hr>
 <% end %>
 
+<h2>
+  Comments for <%=@the_piece.title%>
+</h2>
+<table class="table">
+  <tr>
+    <th scope="col">
+      Comment
+    </th>
+
+    <th scope="col">
+      Posted at
+    </th>
+
+  </tr>
+
+  <% @list_of_comments.each do |a_comment| %>
+  <tr>
+    <td>
+      <%= a_comment.comment_text %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(a_comment.updated_at) %> ago
+    </td>
+
+  </tr>
+  <% end %>
+</table>
 
 <% if @current_user != nil %>
   <h2>
@@ -287,35 +315,4 @@
       Create comment
     </button>
   </form>
-
-  <hr>
 <% end %>
-
-<h2>
-  Comments for <%=@the_piece.title%>
-</h2>
-<table>
-  <tr>
-    <th>
-      Comment
-    </th>
-
-    <th>
-      Posted at
-    </th>
-
-  </tr>
-
-  <% @list_of_comments.each do |a_comment| %>
-  <tr>
-    <td>
-      <%= a_comment.comment_text %>
-    </td>
-
-    <td>
-      <%= time_ago_in_words(a_comment.updated_at) %> ago
-    </td>
-
-  </tr>
-  <% end %>
-</table>

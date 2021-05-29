@@ -6,7 +6,67 @@
   </div>
 </div>
 
-<hr>
+<div>
+  <div>
+    <table class="table">
+      <tr>
+
+        <th scope="col">
+          Name
+        </th>
+
+        <th scope="col">
+          Era
+        </th>
+
+        <th scope="col">
+          Pieces count
+        </th>
+
+        <th>
+          Details
+        </th>
+      </tr>
+
+      <% @list_of_composers.each do |a_composer| %>
+      <tr>
+        <!--
+        <td>
+          <%= a_composer.id %>
+        </td>
+        -->
+
+        <td>
+          <%= a_composer.name %>
+        </td>
+
+        <td>
+          <%= a_composer.era %>
+        </td>
+
+        <td>
+          <%= a_composer.pieces_count %>
+        </td>
+
+        <!--
+        <td>
+          <%= time_ago_in_words(a_composer.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_composer.updated_at) %> ago
+        </td>
+        -->
+
+        <td>
+          <a href="/composers/<%= a_composer.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
 
 <% if @current_user != nil %>
 <div>
@@ -72,83 +132,4 @@
     </form>
   </div>
 </div>
-<hr>
 <% end %>
-
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <!--
-        <th>
-          ID
-        </th>
-        -->
-
-        <th>
-          Name
-        </th>
-
-        <th>
-          Era
-        </th>
-
-        <th>
-          Pieces count
-        </th>
-
-        <!--
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-        -->
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_composers.each do |a_composer| %>
-      <tr>
-        <!--
-        <td>
-          <%= a_composer.id %>
-        </td>
-        -->
-
-        <td>
-          <%= a_composer.name %>
-        </td>
-
-        <td>
-          <%= a_composer.era %>
-        </td>
-
-        <td>
-          <%= a_composer.pieces_count %>
-        </td>
-
-        <!--
-        <td>
-          <%= time_ago_in_words(a_composer.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_composer.updated_at) %> ago
-        </td>
-        -->
-
-        <td>
-          <a href="/composers/<%= a_composer.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>

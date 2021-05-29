@@ -6,7 +6,53 @@
   </div>
 </div>
 
-<hr>
+<div>
+  <div>
+    <table class="table">
+      <tr>
+
+        <th scope="col">
+          Piece
+        </th>
+
+        <th scope="col">
+          Comment
+        </th>
+
+        <th scope="col">
+          Posted at
+        </th>
+
+        <th scope="col">
+          Details
+        </th>
+      </tr>
+
+      <% @list_of_comments.each do |a_comment| %>
+      <tr>
+
+        <td>
+          <%= a_comment.piece.title %>
+        </td>
+
+        <td>
+          <%= a_comment.comment_text %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_comment.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/comments/<%= a_comment.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
 
 <div>
   <div>
@@ -51,53 +97,3 @@
     </form>
   </div>
 </div>
-
-<hr>
-<div>
-  <div>
-    <table>
-      <tr>
-
-        <th>
-          Piece
-        </th>
-
-        <th>
-          Comment
-        </th>
-
-        <th>
-          Posted at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_comments.each do |a_comment| %>
-      <tr>
-
-        <td>
-          <%= a_comment.piece.title %>
-        </td>
-
-        <td>
-          <%= a_comment.comment_text %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_comment.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/comments/<%= a_comment.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>

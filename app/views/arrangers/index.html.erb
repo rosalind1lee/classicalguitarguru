@@ -6,46 +6,9 @@
   </div>
 </div>
 
-<hr>
-
-<% if @current_user != nil %>
 <div>
   <div>
-    <h2>
-      Add a new arranger
-    </h2>
-
-    <form action="/insert_arranger" method="post">
-      <div>
-        <label for="name_box">
-          Name
-        </label>
-
-        <input type="text" id="name_box" name="query_name">
-      </div>
-
-      <!--
-      <div>
-        <label for="pieces_count_box">
-          Pieces count
-        </label>
-
-        <input type="text" id="pieces_count_box" name="query_pieces_count">
-      </div>
-      -->
-
-      <button>
-        Create arranger
-      </button>
-    </form>
-  </div>
-</div>
-<hr>
-<% end %>
-
-<div>
-  <div>
-    <table border="1">
+    <table class="table">
       <tr>
         <!--
         <th>
@@ -53,25 +16,16 @@
         </th>
         -->
 
-        <th>
+        <th scope="col">
           Name
         </th>
 
-        <th>
+        <th scope="col">
           Pieces count
         </th>
 
-        <!--
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-        -->
-
-        <th>
+        <th scope="col">
+          Details
         </th>
       </tr>
 
@@ -111,4 +65,26 @@
   </div>
 </div>
 
-<hr>
+<% if @current_user != nil %>
+<div>
+  <div>
+    <h2>
+      Add a new arranger
+    </h2>
+
+    <form action="/insert_arranger" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <button>
+        Create arranger
+      </button>
+    </form>
+  </div>
+</div>
+<% end %>
