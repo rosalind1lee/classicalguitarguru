@@ -6,6 +6,87 @@
   </div>
 </div>
 
+<div>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+
+          <th scope="col">
+            Title
+          </th>
+
+          <th scope="col">
+            Composer
+          </th>
+
+          <th scope="col">
+            Arranger
+          </th>
+
+          <th scope="col">
+            Average Rating
+          </th>
+
+          <th scope="col">
+            Favorites count
+          </th>
+
+          <th scope="col">
+            Comments count
+          </th>
+
+          <th scope="col">
+            Details
+          </th>
+
+        </tr>
+      </thead>
+
+      <% @list_of_pieces.each do |a_piece| %>
+      <tbody>
+        <tr>
+
+          <td>
+            <%= a_piece.title %>
+          </td>
+
+          <td>
+            <% if a_piece.composer != nil %>
+              <%= a_piece.composer.name %>
+            <% end %>
+          </td>
+
+          <td>
+            <% if a_piece.arranger != nil %>
+              <%= a_piece.arranger.name %>
+            <% end %>
+          </td>
+
+          <td>
+            <%= a_piece.ratings.average(:score) %>
+          </td>
+
+          <td>
+            <%= a_piece.favorites_count %>
+          </td>
+
+          <td>
+            <%= a_piece.comments_count %>
+          </td>
+
+          <td>
+            <a href="/pieces/<%= a_piece.id %>">
+              Show details
+            </a>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>
+
 <hr>
 
 <% if @current_user != nil%>
@@ -57,144 +138,10 @@
         </select>
       </div>
 
-      <!--
-      <div>
-        <label for="ratings_count_box">
-          Ratings count
-        </label>
-
-        <input type="text" id="ratings_count_box" name="query_ratings_count">
-      </div>
-
-      <div>
-        <label for="favorites_count_box">
-          Favorites count
-        </label>
-
-        <input type="text" id="favorites_count_box" name="query_favorites_count">
-      </div>
-
-      <div>
-        <label for="comments_count_box">
-          Comments count
-        </label>
-
-        <input type="text" id="comments_count_box" name="query_comments_count">
-      </div>
-      -->
-
       <button>
         Create piece
       </button>
     </form>
   </div>
 </div>
-<hr>
 <% end %>
-
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <!--
-        <th>
-          ID
-        </th>
-        -->
-
-        <th>
-          Title
-        </th>
-
-        <th>
-          Composer
-        </th>
-
-        <th>
-          Arranger
-        </th>
-
-        <th>
-          Average Rating
-        </th>
-
-        <th>
-          Favorites count
-        </th>
-
-        <th>
-          Comments count
-        </th>
-
-        <!--
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-        -->
-
-        <th>
-        </th>
-
-      </tr>
-
-      <% @list_of_pieces.each do |a_piece| %>
-      <tr>
-        <!--
-        <td>
-          <%= a_piece.id %>
-        </td>
-        -->
-
-        <td>
-          <%= a_piece.title %>
-        </td>
-
-        <td>
-          <% if a_piece.composer != nil %>
-            <%= a_piece.composer.name %>
-          <% end %>
-        </td>
-
-        <td>
-          <% if a_piece.arranger != nil %>
-            <%= a_piece.arranger.name %>
-          <% end %>
-        </td>
-
-        <td>
-          <%= a_piece.ratings.average(:score) %>
-        </td>
-
-        <td>
-          <%= a_piece.favorites_count %>
-        </td>
-
-        <td>
-          <%= a_piece.comments_count %>
-        </td>
-
-        <!--
-        <td>
-          <%= time_ago_in_words(a_piece.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_piece.updated_at) %> ago
-        </td>
-        -->
-
-        <td>
-          <a href="/pieces/<%= a_piece.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>
