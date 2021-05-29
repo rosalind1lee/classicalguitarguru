@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_27_022509) do
+ActiveRecord::Schema.define(version: 2021_05_29_220417) do
 
   create_table "arrangers", force: :cascade do |t|
     t.string "name"
-    t.integer "pieces_count"
+    t.integer "pieces_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_05_27_022509) do
   create_table "composers", force: :cascade do |t|
     t.string "name"
     t.string "era"
-    t.integer "pieces_count"
+    t.integer "pieces_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 2021_05_27_022509) do
     t.string "title"
     t.integer "composer_id"
     t.integer "arranger_id"
-    t.integer "ratings_count"
-    t.integer "favorites_count"
-    t.integer "comments_count"
+    t.integer "ratings_count", default: 0
+    t.integer "favorites_count", default: 0
+    t.integer "comments_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

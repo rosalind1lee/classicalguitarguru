@@ -3,9 +3,9 @@
 # Table name: pieces
 #
 #  id              :integer          not null, primary key
-#  comments_count  :integer
-#  favorites_count :integer
-#  ratings_count   :integer
+#  comments_count  :integer          default(0)
+#  favorites_count :integer          default(0)
+#  ratings_count   :integer          default(0)
 #  title           :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

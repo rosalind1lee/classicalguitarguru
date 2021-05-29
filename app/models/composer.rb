@@ -5,7 +5,7 @@
 #  id           :integer          not null, primary key
 #  era          :string
 #  name         :string
-#  pieces_count :integer
+#  pieces_count :integer          default(0)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
