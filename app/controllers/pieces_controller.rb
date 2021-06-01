@@ -2,7 +2,8 @@ class PiecesController < ApplicationController
   def index
     matching_pieces = Piece.all
 
-    @list_of_pieces = matching_pieces.order({ :created_at => :desc })
+    @list_of_pieces = Piece.order(:title).page params[:page]
+    #@list_of_pieces = matching_pieces.order({ :created_at => :desc })
 
 
     @list_of_composers = Composer.all

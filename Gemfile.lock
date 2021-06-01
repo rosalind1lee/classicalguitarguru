@@ -368,6 +368,7 @@ DEPENDENCIES
   grade_runner!
   http
   jbuilder (~> 2.7)
+  kaminari
   listen (~> 3.2)
   nokogiri (>= 1.10.8)
   pg

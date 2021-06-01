@@ -2,7 +2,8 @@ class ComposersController < ApplicationController
   def index
     matching_composers = Composer.all
 
-    @list_of_composers = matching_composers.order({ :created_at => :desc })
+    @list_of_composers = Composer.order(:name).page params[:page]
+    #@list_of_composers = matching_composers.order({ :created_at => :desc })
 
     render({ :template => "composers/index.html.erb" })
   end
