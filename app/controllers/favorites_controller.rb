@@ -40,8 +40,8 @@ class FavoritesController < ApplicationController
     the_piece_id = params.fetch("query_piece_id")
     piece_title = the_piece_id.split("-")[0].strip
     composer_name = the_piece_id.split("-")[1].strip
-    p piece_title
-    p composer_name
+    #p piece_title
+    #p composer_name
 
     the_composer = Composer.where({ :name => composer_name }).at(0)
     the_piece = Piece.where({ :title => piece_title }).where({ :composer_id => the_composer.id }).at(0)
@@ -73,21 +73,31 @@ class FavoritesController < ApplicationController
     the_favorite = Favorite.where({ :id => the_id }).at(0)
 
     the_piece_id = params.fetch("query_piece_id")
+    piece_title = the_piece_id.split("-")[0].strip
+    composer_name = the_piece_id.split("-")[1].strip
     the_user_id = @current_user.id
 
-    fav = Favorite.where({ :user_id => the_user_id }).where({ :piece_id => the_piece_id}).at(0)
+    the_composer = Composer.where({ :name => composer_name }).at(0)
+    the_piece = Piece.where({ :title => piece_title }).where({ :composer_id => the_composer.id }).at(0)
+    the_user_id = @current_user.id
 
-    if fav == nil
-      the_favorite.piece_id = the_piece_id
-      the_favorite.user_id = the_user_id
-      if the_favorite.valid?
-        the_favorite.save
-        redirect_to("/favorites/#{the_favorite.id}", { :notice => "Favorite updated successfully."} )
-      else
-        redirect_to("/favorites/#{the_favorite.id}", { :alert => "Favorite failed to update successfully." })      
-      end
+    if the_piece == nil
+      redirect_to("/favorites", { :alert => "Piece has not been added to our collection yet." })
     else
-      redirect_to("/favorites/#{the_favorite.id}", { :alert => "Piece is already in your favorites." })
+      fav = Favorite.where({ :user_id => the_user_id }).where({ :piece_id => the_piece.id}).at(0)
+
+      if fav == nil
+        the_favorite.piece_id = the_piece.id
+        the_favorite.user_id = the_user_id
+        if the_favorite.valid?
+          the_favorite.save
+          redirect_to("/favorites/#{the_favorite.id}", { :notice => "Favorite updated successfully."} )
+        else
+          redirect_to("/favorites/#{the_favorite.id}", { :alert => "Favorite failed to update successfully." })      
+        end
+      else
+        redirect_to("/favorites/#{the_favorite.id}", { :alert => "Piece is already in your favorites." })
+      end
     end
   end
 
