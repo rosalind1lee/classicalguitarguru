@@ -30,20 +30,32 @@ class CommentsController < ApplicationController
   end
 
   def create
-    the_comment = Comment.new
-    the_comment.piece_id = params.fetch("query_piece_id")
-    the_comment.user_id = @current_user.id
-    the_comment.comment_text = params.fetch("query_comment_text")
+    the_piece_id = params.fetch("query_piece_id")
+    piece_title = the_piece_id.split("-")[0].strip
+    composer_name = the_piece_id.split("-")[1].strip
 
-    if the_comment.valid?
-      the_comment.save
-      flash[:notice] = "Comment created successfully."
-      redirect_back(fallback_location: "/comments/#{the_comment.id}")
-      #redirect_to("/pieces/#{the_comment.piece_id}", { :notice => "Comment created successfully." })
+    the_composer = Composer.where({ :name => composer_name }).at(0)
+    the_piece = Piece.where({ :title => piece_title }).where({ :composer_id => the_composer.id }).at(0)
+    the_user_id = @current_user.id
+
+    if the_piece == nil
+      redirect_to("/comments", { :alert => "Piece has not been added to our collection yet." })
     else
-      flash[:alert] = "Comment failed to create successfully."
-      redirect_back(fallback_location: "/comments")
-      #redirect_to("/pieces/#{the_comment.piece_id}", { :notice => "Comment failed to create successfully." })
+      the_comment = Comment.new
+      the_comment.piece_id = the_piece.id
+      the_comment.user_id = @current_user.id
+      the_comment.comment_text = params.fetch("query_comment_text")
+
+      if the_comment.valid?
+        the_comment.save
+        flash[:notice] = "Comment created successfully."
+        redirect_back(fallback_location: "/comments/#{the_comment.id}")
+        #redirect_to("/pieces/#{the_comment.piece_id}", { :notice => "Comment created successfully." })
+      else
+        flash[:alert] = "Comment failed to create successfully."
+        redirect_back(fallback_location: "/comments")
+        #redirect_to("/pieces/#{the_comment.piece_id}", { :notice => "Comment failed to create successfully." })
+      end
     end
   end
 
