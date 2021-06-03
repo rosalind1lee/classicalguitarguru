@@ -40,8 +40,6 @@ class FavoritesController < ApplicationController
     the_piece_id = params.fetch("query_piece_id")
     piece_title = the_piece_id.split("-")[0].strip
     composer_name = the_piece_id.split("-")[1].strip
-    #p piece_title
-    #p composer_name
 
     the_composer = Composer.where({ :name => composer_name }).at(0)
     the_piece = Piece.where({ :title => piece_title }).where({ :composer_id => the_composer.id }).at(0)
