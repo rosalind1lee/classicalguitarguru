@@ -32,38 +32,53 @@ class PiecesController < ApplicationController
   end
 
   def create
-    the_piece = Piece.new
-    the_piece.title = params.fetch("query_title")
-    the_piece.composer_id = params.fetch("query_composer_id")
-    the_piece.arranger_id = params.fetch("query_arranger_id")
-    #the_piece.ratings_count = params.fetch("query_ratings_count")
-    #the_piece.favorites_count = params.fetch("query_favorites_count")
-    #the_piece.comments_count = params.fetch("query_comments_count")
+    composer_name = params.fetch("query_composer_id")
+    the_composer = Composer.where({ :name => composer_name }).at(0)
 
-    if the_piece.valid?
-      the_piece.save
-      redirect_to("/pieces", { :notice => "Piece created successfully." })
+    if the_composer == nil
+      redirect_to("/composers", { :alert => "Composer has not been added to our collection yet." })
     else
-      redirect_to("/pieces", { :notice => "Piece failed to create successfully." })
+      the_piece = Piece.new
+      the_piece.title = params.fetch("query_title")
+      the_piece.composer_id = the_composer.id
+      the_piece.arranger_id = params.fetch("query_arranger_id")
+      #the_piece.ratings_count = params.fetch("query_ratings_count")
+      #the_piece.favorites_count = params.fetch("query_favorites_count")
+      #the_piece.comments_count = params.fetch("query_comments_count")
+
+      if the_piece.valid?
+        the_piece.save
+        redirect_to("/pieces", { :notice => "Piece created successfully." })
+      else
+        redirect_to("/pieces", { :notice => "Piece failed to create successfully." })
+      end
     end
   end
 
   def update
-    the_id = params.fetch("path_id")
-    the_piece = Piece.where({ :id => the_id }).at(0)
+    composer_name = params.fetch("query_composer_id")
+    the_composer = Composer.where({ :name => composer_name }).at(0)
 
-    the_piece.title = params.fetch("query_title")
-    the_piece.composer_id = params.fetch("query_composer_id")
-    the_piece.arranger_id = params.fetch("query_arranger_id")
-    #the_piece.ratings_count = params.fetch("query_ratings_count")
-    #the_piece.favorites_count = params.fetch("query_favorites_count")
-    #the_piece.comments_count = params.fetch("query_comments_count")
-
-    if the_piece.valid?
-      the_piece.save
-      redirect_to("/pieces/#{the_piece.id}", { :notice => "Piece updated successfully."} )
+    if the_composer == nil
+      redirect_to("/composers", { :alert => "Composer has not been added to our collection yet." })
     else
-      redirect_to("/pieces/#{the_piece.id}", { :alert => "Piece failed to update successfully." })
+
+      the_id = params.fetch("path_id")
+      the_piece = Piece.where({ :id => the_id }).at(0)
+
+      the_piece.title = params.fetch("query_title")
+      the_piece.composer_id = the_composer.id
+      the_piece.arranger_id = params.fetch("query_arranger_id")
+      #the_piece.ratings_count = params.fetch("query_ratings_count")
+      #the_piece.favorites_count = params.fetch("query_favorites_count")
+      #the_piece.comments_count = params.fetch("query_comments_count")
+
+      if the_piece.valid?
+        the_piece.save
+        redirect_to("/pieces/#{the_piece.id}", { :notice => "Piece updated successfully."} )
+      else
+        redirect_to("/pieces/#{the_piece.id}", { :alert => "Piece failed to update successfully." })
+      end
     end
   end
 

@@ -113,7 +113,14 @@
           Composer
         </label>
 
-        <select name="query_composer_id" id="composer_id_box">
+        <input type="text" name="query_composer_id" id="composer_id_box" list="composer_id_box_list" />
+        <datalist id="composer_id_box_list">
+          <% @list_of_composers.each do |a_composer| %>
+            <option value="<%=a_composer.name%>">
+          <% end %>
+        </datalist>
+
+        <!--<select name="query_composer_id" id="composer_id_box">
           <% @list_of_composers.each do |a_composer| %>
             <% if a_composer.id == 1 %>
               <option value="<%=a_composer.id%>" selected>
@@ -123,7 +130,7 @@
               <%=a_composer.name%>
             </option>
           <% end %>
-        </select>
+        </select>-->
       </div>
 
 
