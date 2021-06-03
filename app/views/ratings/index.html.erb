@@ -107,7 +107,18 @@
           Piece
         </label>
 
-        <select name="query_piece_id" id="piece_id_box">
+        <input type="text" name="query_piece_id" id="piece_id_box" list="piece_id_box_list" />
+        <datalist id="piece_id_box_list">
+          <% @list_of_pieces.each do |a_piece| %>
+            <% if a_piece.composer != nil %>
+              <option value="<%=a_piece.title+" - "+a_piece.composer.name%>">
+            <% else %>
+              <option value="<%=a_piece.title+" - "+"Anonymous"%>">
+            <% end %>
+          <% end %>
+        </datalist>
+
+        <!--<select name="query_piece_id" id="piece_id_box">
           <option disabled selected value> -- select an option -- </option>
           <% @list_of_pieces.each do |a_piece| %>
             <option value="<%=a_piece.id%>">
@@ -118,7 +129,7 @@
               <% end %>
             </option>
           <% end %>
-        </select>
+        </select>-->
 
       </div>
 
