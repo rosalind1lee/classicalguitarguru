@@ -1,7 +1,6 @@
-# Base Rails
+# Classical Guitar Guru
 
-## Standard Workflow
+Website that allows users to view pieces by difficulty, composers, and arrangers.
+Users can mark pieces as favorite, leave ratings, and leave comments on pieces.
 
- 1. Start the web server by running `bin/server`.
- 1. Navigate to your live application.
- 1. As you work, remember to navigate to `/git` and **commit often as you work.**
+https://dashboard.heroku.com/apps/classical-guitar-guru
