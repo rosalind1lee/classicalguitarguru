@@ -2,7 +2,7 @@ class ArrangersController < ApplicationController
   def index
     matching_arrangers = Arranger.all
 
-    @list_of_arrangers = matching_arrangers.order({ :created_at => :desc })
+    @list_of_arrangers = matching_arrangers.order({ :name => :asc })
 
     render({ :template => "arrangers/index.html.erb" })
   end
