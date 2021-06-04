@@ -35,32 +35,28 @@ class RatingsController < ApplicationController
 
   def create
     the_piece_id = params.fetch("query_piece_id")
-    piece_title = the_piece_id.split("-")[0].strip
-    composer_name = the_piece_id.split("-")[1].strip
+    #piece_title = the_piece_id.split("-")[0].strip
+    #composer_name = the_piece_id.split("-")[1].strip
 
-    the_composer = Composer.where({ :name => composer_name }).at(0)
-    the_piece = Piece.where({ :title => piece_title }).where({ :composer_id => the_composer.id }).at(0)
+    #the_composer = Composer.where({ :name => composer_name }).at(0)
+    #the_piece = Piece.where({ :title => piece_title }).where({ :composer_id => the_composer.id }).at(0)
     the_user_id = @current_user.id
 
-    if the_piece == nil
-      redirect_to("/ratings", { :alert => "Piece has not been added to our collection yet." })
-    else
-      rate = Rating.where({ :user_id => the_user_id }).where({ :piece_id => the_piece.id}).at(0)
+    rate = Rating.where({ :user_id => the_user_id }).where({ :piece_id => the_piece_id}).at(0)
 
-      if rate == nil
-        the_rate = Rating.new
-        the_rate.user_id = the_user_id
-        the_rate.piece_id = the_piece.id
-        the_rate.score = params.fetch("query_score")
-        if the_rate.valid?
-          the_rate.save
-          redirect_to("/ratings", { :notice => "Rating created successfully." })
-        else
-          redirect_to("/ratings", { :alert => "Rating failed to create successfully." })
-        end
+    if rate == nil
+      the_rate = Rating.new
+      the_rate.user_id = the_user_id
+      the_rate.piece_id = the_piece_id
+      the_rate.score = params.fetch("query_score")
+      if the_rate.valid?
+        the_rate.save
+        redirect_to("/ratings", { :notice => "Rating created successfully." })
       else
-        redirect_to("/ratings", { :alert => "You have already rated this piece." })
+        redirect_to("/ratings", { :alert => "Rating failed to create successfully." })
       end
+    else
+      redirect_to("/ratings", { :alert => "You have already rated this piece." })
     end
 
   end
